@@ -11,7 +11,9 @@ let isContrast = document.getElementById("contrast-check").checked;
 let turnContrast = isContrast;
 let sizes = []
 let order = 0;
-var success = true
+var success = true;
+let defsvg = '<button class="btn" onclick="{}"><svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-arrow-clockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3.17 6.706a5 5 0 0 1 7.103-3.16.5.5 0 1 0 .454-.892A6 6 0 1 0 13.455 5.5a.5.5 0 0 0-.91.417 5 5 0 1 1-9.375.789z"/><path fill-rule="evenodd" d="M8.147.146a.5.5 0 0 1 .707 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 1 1-.707-.708L10.293 3 8.147.854a.5.5 0 0 1 0-.708z"/></svg></button>'
+
 function defaultImage() {
 try{
 document.getElementById("img").src = localStorage.getItem("filtered-image");
@@ -51,7 +53,7 @@ function imageShow() {
 
 function brightness() {
 	valbrig = document.getElementById("slider-bright").value;
-	document.getElementById("brightness").innerHTML = document.getElementById("brightness").innerHTML.replace("{}",valbrig);
+	document.getElementById("brightness").innerHTML = "Brightness :"+valbrig+"% "+defsvg.replace("{}","brigdef();");
 	if(turnSepia){
 		if (turnContrast) {
 		document.getElementById("img").style = "filter:blur("+valblur+"px) sepia("+valsep+"%) contrast("+valcon+") saturate("+valsat+"%) opacity("+valopa+"%) grayscale("+valgray+"%) brightness("+valbrig+"%)";
@@ -88,7 +90,7 @@ function brightness() {
 
 function grayscale() {
 	valgray = document.getElementById("slider-gray").value;
-	document.getElementById("grayscale").innerHTML = document.getElementById("grayscale").innerHTML.replace("{}",valgray);
+	document.getElementById("grayscale").innerHTML = "Grayscale :"+valgray+"% "+defsvg.replace("{}","graydef();")
 	if(turnSepia){
 		if (turnContrast) {
 		document.getElementById("img").style = "filter:blur("+valblur+"px) sepia("+valsep+"%) contrast("+valcon+") saturate("+valsat+"%) opacity("+valopa+"%) grayscale("+valgray+"%) brightness("+valbrig+"%)";
@@ -126,7 +128,7 @@ function grayscale() {
 
 function sepia() {
 	valsep = document.getElementById("slider-sepia").value;
-	document.getElementById("sepia").innerHTML = document.getElementById("sepia").innerHTML.replace("{}",valsep)
+	document.getElementById("sepia").innerHTML = "Sepia :"+valsep+"% "+defsvg.replace("{}","sepdef();");
 	// document.getElementById("img").style = "filter:blur("+valblur+"px) contrast("+valcon+") saturate("+valsat+"%) opacity("+valopa+"%) sepia("+valsep+"%) grayscale("+valgray+"%) brightness("+valbrig+"%)";
 	if(turnContrast){
 	document.getElementById("img").style = "filter:blur("+valblur+"px) contrast("+valcon+") saturate("+valsat+"%) opacity("+valopa+"%) sepia("+valsep+"%) grayscale("+valgray+"%) brightness("+valbrig+"%)";
@@ -165,7 +167,7 @@ function toggleSepia() {
 }
 function opacity() {
 	valopa = document.getElementById("slider-opacity").value;
-	document.getElementById("opacity").innerHTML = document.getElementById("opacity").innerHTML.replace("{}",valopa);
+	document.getElementById("opacity").innerHTML = "Opacity :"+valopa+"% "+defsvg.replace("{}","opadef();")
 	if(turnSepia){
 		if (turnContrast) {
 		document.getElementById("img").style = "filter:blur("+valblur+"px) sepia("+valsep+"%) contrast("+valcon+") saturate("+valsat+"%) opacity("+valopa+"%) grayscale("+valgray+"%) brightness("+valbrig+"%)";
@@ -201,7 +203,7 @@ function opacity() {
 }
 function saturate() {
 	valsat = document.getElementById("slider-saturate").value;
-	document.getElementById("saturate").innerHTML = document.getElementById("saturate").innerHTML.replace("{}",valsat);
+	document.getElementById("saturate").innerHTML = "Saturate :"+valsat+"% "+defsvg.replace("{}","satdef();")
 	if(turnSepia){
 		if (turnContrast) {
 		document.getElementById("img").style = "filter:blur("+valblur+"px) sepia("+valsep+"%) contrast("+valcon+") saturate("+valsat+"%) opacity("+valopa+"%) grayscale("+valgray+"%) brightness("+valbrig+"%)";
@@ -237,7 +239,7 @@ function saturate() {
 }
 function contrast() {
 	valcon = document.getElementById("slider-contrast").value;
-	document.getElementById("contrast").innerHTML = document.getElementById("contrast").innerHTML.replace('{}',valcon);
+	document.getElementById("contrast").innerHTML = "Contrast :"+valcon+"% "+defsvg.replace("{}","contdef();");
 	if(turnSepia){
 	document.getElementById("img").style = "filter:blur("+valblur+"px) contrast("+valcon+") saturate("+valsat+"%) opacity("+valopa+"%) sepia("+valsep+"%) grayscale("+valgray+"%) brightness("+valbrig+"%)";
 	}
@@ -274,6 +276,42 @@ function toggleContrast() {
 	}
 }
 
+
+function importImage() {
+	document.getElementById("upload").click();
+}
+
+function brigdef() {
+	document.getElementById("slider-bright").value = 100;
+	brightness();
+}
+function contdef() {
+	document.getElementById("slider-contrast").value = 0;
+	contrast();
+}
+
+function satdef() {
+	document.getElementById("slider-saturate").value = 100;
+	saturate();
+}
+function sepdef() {
+	document.getElementById("slider-sepia").value = 0;
+	sepia();
+}
+
+function opadef() {
+	document.getElementById("slider-opacity").value = 100;
+	opacity();
+}
+function graydef() {
+	document.getElementById("slider-gray").value = 0;
+	grayscale();
+}
+function blurdef() {
+	document.getElementById("slider-blur").value = 0;
+	bluring();
+}
+
 brightness();
 grayscale();
 sepia();
@@ -282,43 +320,3 @@ contrast();
 saturate();
 toggleContrast();
 toggleSepia();
-
-function importImage() {
-	document.getElementById("upload").click();
-}
-
-
-function defaultValue(elementId,sliderId,defaultVal,elementFunction) {
-document.getElementById(elementId).addEventListener("click",function(e) {
-	document.getElementById(sliderId).value = defaultVal;
-	if (elementId.includes("bright")) {
-		brightness();
-	}
-	else if(elementId.includes("opacity")) {
-		opacity();
-	}
-	else if(elementId.includes("sepia")) {
-		sepia();
-	}
-	else if(elementId.includes("saturate")) {
-		saturate();
-	}
-	else if(elementId.includes("contrast")) {
-		contrast();
-	}else if(elementId.includes("blur")) {
-		blur();
-	}
-	else{
-		grayscale();
-	}
-})
-}
-
-
-defaultValue("brightnessdefault","slider-bright",100,brightness)
-defaultValue("opacitydefault","slider-opacity",100,opacity)
-defaultValue("sepiadefault","slider-sepia",0,sepia)
-defaultValue("saturatedefault","slider-saturate",0,saturate)
-defaultValue("contrastdefault","slider-contrast",0,contrast)
-defaultValue("blurdefault","slider-blur",100,blur)
-defaultValue("grayscaledefault","slider-gray",0,grayscale)
