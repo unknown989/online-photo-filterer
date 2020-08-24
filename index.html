@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Upload Image</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body onload="javascript:defaultImage();">
+	<input accept="image/*" id="upload" value="" style="display: none;" type="file" name="profile-img" required="true" onchange="imageShow();">
+	<br><br>
+	<img src="" id="img">
+	<div id="filters">
+		<div id="uploaddiv">
+			
+		<button class="btn btn-dark" onclick="importImage();">import</button>
+		</div>
+		<hr>
+	<p id="opacity">Opacity : {}<button id="opacitydefault" class="btn"><svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-arrow-clockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M3.17 6.706a5 5 0 0 1 7.103-3.16.5.5 0 1 0 .454-.892A6 6 0 1 0 13.455 5.5a.5.5 0 0 0-.91.417 5 5 0 1 1-9.375.789z"/>
+  <path fill-rule="evenodd" d="M8.147.146a.5.5 0 0 1 .707 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 1 1-.707-.708L10.293 3 8.147.854a.5.5 0 0 1 0-.708z"/>
+</svg></button></p>
+	<input type="range" class="slider" name="slider" value="100" min="0" max="100" oninput="opacity();" id='slider-opacity'>
+	<p id="brightness">Brightness : {}<button id="brightnessdefault" class="btn"><svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-arrow-clockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M3.17 6.706a5 5 0 0 1 7.103-3.16.5.5 0 1 0 .454-.892A6 6 0 1 0 13.455 5.5a.5.5 0 0 0-.91.417 5 5 0 1 1-9.375.789z"/>
+  <path fill-rule="evenodd" d="M8.147.146a.5.5 0 0 1 .707 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 1 1-.707-.708L10.293 3 8.147.854a.5.5 0 0 1 0-.708z"/>
+</svg></button></p>
+	<input type="range" class="slider" name="slider" value="100" min="0" max="10000" oninput="brightness();" id='slider-bright'>
+	<p id="saturate">Saturate : {}<button id="saturatedefault" class="btn"><svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-arrow-clockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M3.17 6.706a5 5 0 0 1 7.103-3.16.5.5 0 1 0 .454-.892A6 6 0 1 0 13.455 5.5a.5.5 0 0 0-.91.417 5 5 0 1 1-9.375.789z"/>
+  <path fill-rule="evenodd" d="M8.147.146a.5.5 0 0 1 .707 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 1 1-.707-.708L10.293 3 8.147.854a.5.5 0 0 1 0-.708z"/>
+</svg></button></p>
+	<input type="range" class="slider" name="slider" value="100" min="0" max="10000" oninput="saturate();" id='slider-saturate'>
+	<p id="grayscale">Grayscale : {}<button id="grayscaledefault" class="btn"><svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-arrow-clockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M3.17 6.706a5 5 0 0 1 7.103-3.16.5.5 0 1 0 .454-.892A6 6 0 1 0 13.455 5.5a.5.5 0 0 0-.91.417 5 5 0 1 1-9.375.789z"/>
+  <path fill-rule="evenodd" d="M8.147.146a.5.5 0 0 1 .707 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 1 1-.707-.708L10.293 3 8.147.854a.5.5 0 0 1 0-.708z"/>
+</svg></button></p>
+	<input type="range" class="slider" name="slider" value="0" min="0" max="100" oninput="grayscale();" id='slider-gray'>
+	<p id="blur">Blur : {}<button id="blurdefault" class="btn"><svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-arrow-clockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M3.17 6.706a5 5 0 0 1 7.103-3.16.5.5 0 1 0 .454-.892A6 6 0 1 0 13.455 5.5a.5.5 0 0 0-.91.417 5 5 0 1 1-9.375.789z"/>
+  <path fill-rule="evenodd" d="M8.147.146a.5.5 0 0 1 .707 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 1 1-.707-.708L10.293 3 8.147.854a.5.5 0 0 1 0-.708z"/>
+</svg></button></p>
+	<input type="range" class="slider" name="slider" value="0" min="0" max="10" oninput="bluring();" id='slider-blur'><br><br>
+	Toggle Contrast : <input type="checkbox" value="off" name="contrast-check" id="contrast-check" oninput="toggleContrast();">
+	
+	<div id="contrast-div" style="display: none;">
+	<p id="contrast">Contrast : {}<button id="contrastdefault" class="btn"><svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-arrow-clockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M3.17 6.706a5 5 0 0 1 7.103-3.16.5.5 0 1 0 .454-.892A6 6 0 1 0 13.455 5.5a.5.5 0 0 0-.91.417 5 5 0 1 1-9.375.789z"/>
+  <path fill-rule="evenodd" d="M8.147.146a.5.5 0 0 1 .707 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 1 1-.707-.708L10.293 3 8.147.854a.5.5 0 0 1 0-.708z"/>
+</svg></button></p><br>
+	<input type="range" class="slider" name="slider" value="0" min="0" max="100" oninput="contrast();" id='slider-contrast'>
+	</div><br>
+	<br>Toggle Sepia : <input type="checkbox" value="off" name="sepia-check" id="sepia-check" oninput="toggleSepia();">
+	<div id="sepia-div" style="display: none;">
+	<p id="sepia">Sepia : {}<button id="sepiadefault" class="btn"><svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-arrow-clockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M3.17 6.706a5 5 0 0 1 7.103-3.16.5.5 0 1 0 .454-.892A6 6 0 1 0 13.455 5.5a.5.5 0 0 0-.91.417 5 5 0 1 1-9.375.789z"/>
+  <path fill-rule="evenodd" d="M8.147.146a.5.5 0 0 1 .707 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 1 1-.707-.708L10.293 3 8.147.854a.5.5 0 0 1 0-.708z"/>
+</svg></button></p><br>
+	<input type="range" class="slider" name="slider" value="0" min="0" max="100" oninput="sepia();" id='slider-sepia'>
+	</div></div>
+	<script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="js/extra-effects.js"></script>
+</body>
+</html>
