@@ -1,7 +1,7 @@
 function bluring() {
 	valblur = document.getElementById("slider-blur").value;
 
-	document.getElementById("blur").innerHTML = "Blur: "+valblur+"% "+defsvg.replace("{}","blurdef();");
+	document.getElementById("blur").innerHTML = "Blur: "+valblur+"% "+defsvg.replace("{}","blurdef()");
 	if(turnSepia){
 		if (turnContrast) {
 		document.getElementById("img").style = "filter:blur("+valblur+"px) sepia("+valsep+"%) contrast("+valcon+") saturate("+valsat+"%) opacity("+valopa+"%) grayscale("+valgray+"%) brightness("+valbrig+"%)";
