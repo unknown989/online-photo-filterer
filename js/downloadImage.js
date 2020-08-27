@@ -1,5 +1,5 @@
 function download() {
-
+	console.log("Running...")
 	var effects = document.getElementById('img').style.filter;
 	effects.replace(";"," ")
 	var div = document.getElementById("cvs");
@@ -15,17 +15,7 @@ function download() {
 	var dt = div.toDataURL()
 
 	document.getElementById("downloadlink").href = dt;
-	var url ="https://foregoing-flowery-hail.glitch.me/upimg/?original_photo="+document.getElementById("img").src+"&filtered_image"+dt;
-	var xhttp = new XMLHttpRequest();
-
-	xhttp.onreadystatechange = function() {
-		if(JSON.parse(xhttp.responseText).status ==200){
-		document.getElementById("downloadlink").click();
-	}else{
-		alert("Failed")
-	}
-	xhttp.open("GET", url, true);
-	xhttp.send();
-}
+	
+	document.getElementById("downloadlink").click();
 
 }
