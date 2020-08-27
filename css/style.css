@@ -2,13 +2,16 @@ body{
 	padding: 0;
 	margin:0;
 }
-
+#imgdiv{
+	margin-top: -40px;
+}
 #img
 {
 	border-radius: 4px;
-	margin-left: 20px;
+	/**/
+	position: sticky;
 	margin-top:0px;
-	border:1px solid black;
+	/*border:1px solid black;*/
 	user-select: none;
 	pointer-events: none;
 }
@@ -18,10 +21,15 @@ body{
 	width: 240px;
 	border:1px solid black;
 	background-color: yellow;
+	margin-top: 10px;
 	opacity: 0.7;
 	text-align:center;
-	float: right;
+	/*float: right;*/
 	padding-bottom: 4px;
+	position: absolute;
+	top:1%;
+	left:99%;
+	transform: translate(-99%,-1%);
 	
 }
 #uploaddiv

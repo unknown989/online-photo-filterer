@@ -20,12 +20,19 @@ document.getElementById("img").src = localStorage.getItem("filtered-image");
 var nw = Math.floor((400*document.getElementById("img").width)/document.getElementById("img").height);
 document.getElementById("img").height = 400;
 document.getElementById("img").width = nw;
+if(localStorage.getItem("filtered-image")){
+document.getElementById("downloadBtn").style.display = "initial";
+}else{
+	document.getElementById("downloadBtn").style.display = "none"
+}
 }catch{
 	document.getElementById("img").src = "";
 }
 }
 
 function imageShow() {
+
+	document.getElementById("downloadBtn").style.display = "initial";
 	var img = document.querySelector("input[id='upload']");
 	var reader = new FileReader()
 	reader.onload = function() {
@@ -34,8 +41,13 @@ function imageShow() {
 		var nimg = new Image();
 		nimg.onload = function() {
 			var nw = Math.floor((400*nimg.width)/nimg.height);
+			document.getElementById("imgdiv").width = nw;
+			document.getElementById("imgdiv").height = 400;
 			document.getElementById("img").width = nw;
 			document.getElementById("img").height = 400;
+			document.getElementById("cvs").width = nw;
+			document.getElementById("cvs").height = 400;
+			// document.getElementById()
 			if(nw!= NaN || nw != nimg.width){
 				success = true;
 			}else{success=false}
@@ -311,7 +323,6 @@ function blurdef() {
 	document.getElementById("slider-blur").value = 0;
 	bluring();
 }
-
 brightness();
 grayscale();
 sepia();
