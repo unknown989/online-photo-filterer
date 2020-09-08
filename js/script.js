@@ -1,18 +1,18 @@
-let valbrig = document.getElementById("slider-bright").value;
-let valgray = document.getElementById("slider-gray").value;
-let valsep = document.getElementById("slider-sepia").value;
-let valopa = document.getElementById("slider-opacity").value;
-let valsat = document.getElementById("slider-saturate").value;
-let valcon = document.getElementById("slider-contrast").value;
-let valblur = document.getElementById("slider-blur").value;
-let isSepia = document.getElementById("sepia-check").checked;
-let turnSepia = isSepia;
-let isContrast = document.getElementById("contrast-check").checked;
-let turnContrast = isContrast;
-let sizes = []
-let order = 0;
+var valbrig = document.getElementById("slider-bright").value;
+var valgray = document.getElementById("slider-gray").value;
+var valsep = document.getElementById("slider-sepia").value;
+var valopa = document.getElementById("slider-opacity").value;
+var valsat = document.getElementById("slider-saturate").value;
+var valcon = document.getElementById("slider-contrast").value;
+var valblur = document.getElementById("slider-blur").value;
+var isSepia = document.getElementById("sepia-check").checked;
+var turnSepia = isSepia;
+var isContrast = document.getElementById("contrast-check").checked;
+var turnContrast = isContrast;
+var sizes = []
+var order = 0;
 var success = true;
-let defsvg = '<button class="btn" onclick="{}"><svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-arrow-clockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3.17 6.706a5 5 0 0 1 7.103-3.16.5.5 0 1 0 .454-.892A6 6 0 1 0 13.455 5.5a.5.5 0 0 0-.91.417 5 5 0 1 1-9.375.789z"/><path fill-rule="evenodd" d="M8.147.146a.5.5 0 0 1 .707 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 1 1-.707-.708L10.293 3 8.147.854a.5.5 0 0 1 0-.708z"/></svg></button>'
+var defsvg = '<button class="btn" onclick="{}"><svg width="20px" height="20px" viewBox="0 0 16 16" class="bi bi-arrow-clockwise" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3.17 6.706a5 5 0 0 1 7.103-3.16.5.5 0 1 0 .454-.892A6 6 0 1 0 13.455 5.5a.5.5 0 0 0-.91.417 5 5 0 1 1-9.375.789z"/><path fill-rule="evenodd" d="M8.147.146a.5.5 0 0 1 .707 0l2.5 2.5a.5.5 0 0 1 0 .708l-2.5 2.5a.5.5 0 1 1-.707-.708L10.293 3 8.147.854a.5.5 0 0 1 0-.708z"/></svg></button>'
 
 function defaultImage() {
 try{
@@ -132,7 +132,7 @@ function grayscale() {
 		document.getElementById("img").style = "filter:blur("+valblur+"px) sepia("+valsep+"%) saturate("+valsat+"%) opacity("+valopa+"%) grayscale("+valgray+"%) brightness("+valbrig+"%)";
 		}
 		else{
-		document.getElementById("img").style = "filter:blur("+valblur+"px) opacity("+valopa+"%) grayscale("+valgray+"%) brightness("+valbrig+"%)";
+		document.getElementById("img").style = "filter:blur("+valblur+"px) opacity("+valopa+"%) saturate("+valsat+"%) grayscale("+valgray+"%) brightness("+valbrig+"%)";
 	}
 	}
 
