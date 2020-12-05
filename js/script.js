@@ -16,15 +16,19 @@ var defsvg = '<button class="btn" onclick="{}"><svg width="20px" height="20px" v
 
 function defaultImage() {
 try{
-document.getElementById("img").src = localStorage.getItem("filtered-image");
-var nw = Math.floor((400*document.getElementById("img").width)/document.getElementById("img").height);
-document.getElementById("img").height = 400;
-document.getElementById("img").width = nw;
-if(localStorage.getItem("filtered-image")){
-document.getElementById("downloadBtn").style.display = "initial";
-}else{
-	document.getElementById("downloadBtn").style.display = "none"
-}
+	document.getElementById("img").src = localStorage.getItem("filtered-image");
+	var real_width = document.getElementById("img").width;
+	window.real_img_width =real_width;
+	var real_height= document.getElementById("img").height;
+	window.real_img_height=real_height;
+	var nw = Math.floor((400*document.getElementById("img").width)/document.getElementById("img").height);
+	document.getElementById("img").height = 400;
+	document.getElementById("img").width = nw;
+	if(localStorage.getItem("filtered-image")){
+	document.getElementById("downloadBtn").style.display = "initial";
+	}else{
+		document.getElementById("downloadBtn").style.display = "none"
+	}
 }catch{
 	document.getElementById("img").src = "";
 }
@@ -36,29 +40,17 @@ function imageShow() {
 	var img = document.querySelector("input[id='upload']");
 	var reader = new FileReader()
 	reader.onload = function() {
-		localStorage.setItem("filtered-image",reader.result);
-		document.getElementById("img").src = reader.result;
-		var nimg = new Image();
-		nimg.onload = function() {
-			var nw = Math.floor((400*nimg.width)/nimg.height);
-			document.getElementById("imgdiv").width = nw;
-			document.getElementById("imgdiv").height = 400;
-			document.getElementById("img").width = nw;
+		document.getElementById("img").src =reader.result;
+		console.log("READER LOADED...");
+		var tempImg = new Image();
+		tempImg.onload = ()=>{
+			var nw = Math.floor((400*tempImg.width)/tempImg.height);
 			document.getElementById("img").height = 400;
-			document.getElementById("cvs").width = nw;
-			document.getElementById("cvs").height = 400;
-			// document.getElementById()
-			if(nw!= NaN || nw != nimg.width){
-				success = true;
-			}else{success=false}
-			sizes[order] = {"order":order,"height":nimg.height,"width":nimg.width,"success":success,"newwidth":nw};
-			order++;
+			document.getElementById("img").width = nw;
+			defaultImage()
 		}
-		nimg.src = reader.result;
-		// var nw = Math.floor((400*document.getElementById("img").width)/document.getElementById("img").height);
-		// document.getElementById("img").height = 400;
-		// document.getElementById("img").width = nw;
-		// console.log(nw)
+		tempImg.src = reader.result;
+		localStorage.setItem("filtered-image",reader.result);
 	}
 	reader.readAsDataURL(img.files[0])
 }
