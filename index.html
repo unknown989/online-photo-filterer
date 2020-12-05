@@ -11,7 +11,7 @@
 	<br><br>
 	<div id="imgdiv" style="float: left;border:1px solid black;border-radius: 4px;margin-left: 20px;">
 	<img src="" id="img">
-	<a style="display: none;" id="downloadlink" target="_blank">link</a>
+	<a style="position: absolute;opacity: 0;" id="downloadlink" target="_blank">link</a>
 	</div>
 	<canvas style="display: none;" id="cvs"></canvas>
 	<div id="filters">
@@ -63,9 +63,13 @@
 </svg></button></p><br>
 	<input type="range" class="slider" name="slider" value="0" min="0" max="100" oninput="sepia();" id='slider-sepia'>
 	</div></div>
+	<div id="chromedownloading" style="position: absolute;top:50%;left:50%;transform: translate(-50%,-50%);width:40%;height: 40%;background: lightgray;border:1px solid black;border-radius: 8px;text-align:center;display: none;">
+		<p>That only happens if you're using a chrome based browser</p>
+		<a href="" id="chromelinkdownload">Please click this to download the image</a>
+	</div>
+	<script type="text/javascript" src="js/detect_browser.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
 	<script type="text/javascript" src="js/extra-effects.js"></script>
 	<script type="text/javascript" src="js/downloadImage.js"></script>
-	<script data-ad-client="ca-pub-4452094563710091" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </body>
 </html>
