@@ -41,7 +41,6 @@ function imageShow() {
 	var reader = new FileReader()
 	reader.onload = function() {
 		document.getElementById("img").src =reader.result;
-		console.log("READER LOADED...");
 		var tempImg = new Image();
 		tempImg.onload = ()=>{
 			var nw = Math.floor((400*tempImg.width)/tempImg.height);
